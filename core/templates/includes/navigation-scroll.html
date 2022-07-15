@@ -1,0 +1,54 @@
+<!-- Static assets -->
+{% load static %}
+
+
+<!-- Navbar -->
+<nav class="navbar bg-primary">
+    <div class="container-fluid">
+        <!--縮小-->
+        <div class="navbar-wrapper">
+            <div class="navbar-toggle d-inline">
+                <button type="button" class="navbar-toggler">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+        </div>
+        <a class="navbar-brand" href="#">Code Immunity Boost</a>
+        <!--內容-->
+        {% if 'guard' in segment or 'aggression' in segment %}
+            <nav class="nav">
+                <span class="navbar-text">
+                    <span>
+                        <i class="fa fa-bookmark"></i>&ensp;關卡編號:&ensp;{{ contract_number }}&ensp;
+                    </span>
+                    {% if 'guard' in segment %}
+                    <span>
+                        <i class="fa fa-code"></i>&ensp;扮演角色:&ensp;WBC&ensp;
+                    </span>
+                        {% else %}
+                        <span>
+                        <i class="fa fa-code"></i>&ensp;扮演角色:&ensp;Vaccine&ensp;
+                    </span>
+                        {% endif %}
+{#                    <span id="Check_Txt">#}
+{#                        <i class="fa fa-clock"></i>&ensp;時間計數：<span id="Check_i">0:0:0</span>#}
+{#                    </span>#}
+                </span>
+
+            </nav>
+        {% else %}
+            <nav class="nav">
+                <span class="navbar-text">
+                    <span>
+                        學習變異測試之遊戲化系統設計與實作
+                    </span>
+                </span>
+
+            </nav>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- End Navbar -->

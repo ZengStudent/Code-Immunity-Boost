@@ -1,0 +1,160 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <!-- 載入靜態檔案 -->
+    {% load static %}
+    <!--vanilla-tilt.js-->
+    <script src="{% static 'vanilla_tilt/vanilla-tilt.js' %}"></script>
+
+    <!--How-->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>How</h2>
+                </div>
+                <div class="card-body ">
+                    <!--版本-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Version</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>0.0.1.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--故事背景-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>故事背景</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        背景設在現代，傳染病橫行，全世界的民眾都需要疫苗來抵抗傳染病，疫苗是透過身體的免疫系統，讓白血球先演練傳染病進入身體的情況，白血球經歷過疫苗的考驗，白血球具備了抵抗傳染病的能力，當正式遇到傳染病時就能夠立刻對人體進行保護，這樣個人的免疫力也有所提升。</p>
+                                    <p>
+                                        這種透過疫苗來提升白血球的抵抗能力，最後提昇人體的免疫力的行為，其實跟變異測試雷同，變異測試透過變異體(疫苗)來針對測試案例(白血球)進行演練，一但測試案例有不足的地方就表示，程式(人體)本身有潛在的風險，所以開發者需要去改良測試案例的測試能力，也就是產生更高能力的測試案例(提升白血球的抵抗能力)，而好的測試案例能發現程式所包含的風險，讓開發者能及早的修改程式，最後得到高品質的程式(人體免疫力提升)。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--變異測試-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>變異測試</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>變異測試是將原始程式碼進行小幅度修改，形成一個和原始的程式極度相似但不同的程式，稱為變異體。</p>
+                                    <p>將原始程式和一個測試資料集進行單元測試，如果原始程式沒有通過測試，然後將原始程式、變異體兩者一起讓相同的測試資料集去進行單元測試。</p>
+                                    <p>依照輸出分成兩種:原始程式和變異體兩者的輸出相同、原始程式和變異體兩者的輸出不相同。</p>
+                                    <ul>
+                                        <li>
+                                            輸出相同的情況，代表測試資料集內的測試案例不能找出變異體的修改，測試案例存在尚未發現的錯誤情況，需要再修改測試案例，這情況的變異體則視為存活(Survived)。
+                                        </li>
+                                        <li>
+                                            輸出不相同的情況，代表測試資料集內的測試案例能找出變異體的修改，測試案例有考慮到額外的錯誤情況，不需再修改測試案例，這情況的變異體則視為殺死(Killed)。
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--角色說明-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>角色說明</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>白血球</p>
+                                    <ul>
+                                        <li>
+                                            使用者要撰寫測試案例，並讓測試案例盡量找出變異體所包含的錯誤。
+                                        </li>
+                                    </ul>
+                                    <p>疫苗</p>
+                                    <ul>
+                                        <li>
+                                            使用者要撰寫變異體，並盡量不讓測試案例發現自身的錯誤。
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--難度說明-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>難度說明</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        本遊戲的關卡難度(扮演疫苗限定)都依照Jia和Harman*提出的Fragility為難度標準，並分成四種難度，Easy、Medium、Hard、Strong。</p>
+                                    <ul>
+                                        <li>
+                                            Easy，Fragility≥0.75
+                                        </li>
+                                        <li>
+                                            Medium，Fragility<0.75~Fragilit≥0.5
+                                        </li>
+                                        <li>
+                                            Hard，Fragility<0.5~Fragility≥0.25
+                                        </li>
+                                        <li>
+                                            Strong，Fragility<0.25
+                                        </li>
+                                    </ul>
+                                    <p>*Y. Jia and M. Harman.(2009). "Higher Order Mutation Testing." Information and
+                                        Software Technology, 51(10), 1379-1393</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+        });
+
+        //class包含vanilla
+        VanillaTilt.init(document.querySelectorAll(".vanilla"), {
+            glare: false,
+            scale: 1.1,
+            "max-glare": 0.8
+        });
+
+
+    </script>
+
+
+
+
+
+{% endblock javascripts %}

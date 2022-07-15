@@ -1,0 +1,50 @@
+  class TestStringMethods(unittest.TestCase):
+  
+      def setUp(self):
+  
+-        # input data list
++        # input positive integer
+  
+-        self.input_data = [1,3,5,7,9,11,13,15]
++        self.input_a = 27
+  
+-        # input aim value
++        # input positive integer
+  
+-        self.aim = 13
++        self.input_b = 45
+  
+         self.result = '-'
+  
+-        # input expect index
+?                       ^ ^^^
++        # input expect common factor
+?                       ^^^^^ ^^^^^^^
+  
+-        self.expect = 6
+?                      ^
++        self.expect = 9
+?                      ^
+  
+  
+  
+      def test_tri(self):
+  
+          try :
+  
+-             self.assertEqual(interpolation_search(self.input_data,self.aim),self.expect)
+?                              ^^^^^^^^^^^^^^^^^^ ^            ---       - ^
++             self.assertEqual(EucGCD(self.input_a,self.input_b),self.expect)
+?                              ^^ ^^^                    ^^^^^^
+  
+              self.result = self.expect
+  
+          except AssertionError:
+  
+-             self.result = interpolation_search(self.input_data,self.aim)
++             self.result = EucGCD(self.input_a,self.input_b)
+  
+          except Exception as e:
+  
+              self.result = e
+  

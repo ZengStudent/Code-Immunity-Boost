@@ -1,0 +1,556 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <!-- 載入靜態檔案 -->
+    {% load static %}
+
+    <!--Top Bar-->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <span class="badge badge-success">Easy</span>
+                            <span class="badge badge-info">Medium</span>
+                            <span class="badge badge-warning">Hard</span>
+                            <span class="badge badge-danger">Difficult</span>
+                            <p>此顏色代表，該關卡的難度。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Contract(Pratice)-->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#linkwbc" role="tablist"
+                               aria-expanded="true">
+                                Leukocyte
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content tab-space" style="color: #ffffff;font-size: small;">
+                        <div class="tab-pane active" id="linkwbc" aria-expanded="true">
+                            <div class="row">
+                                {% for contract_guard_data in dataset.Guard %}
+                                    <div class="col-sm-4">
+                                        <div class="card" style="width: 20rem;">
+                                            {% if contract_guard_data.islock == False %}
+                                                <img class="card-img-top"
+                                                     src="{% static 'img_folder/primary-bg.png' %}"
+                                                     alt="Card image cap">
+                                                <div class="card-img-overlay text-center ">
+                                                    <h1 class="card-title">&nbsp;</h1>
+                                                    {% if contract_guard_data.completerank == 'S' %}
+                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪✪✪</h1>
+                                                        <h1 class="card-title" style="color: #F5DDC5">S</h1>
+                                                    {% elif  contract_guard_data.completerank == 'A' %}
+                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪✪O</h1>
+                                                        <h1 class="card-title" style="color: #F5DDC5">A</h1>
+                                                    {% elif  contract_guard_data.completerank == 'B' %}
+                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪OO</h1>
+                                                        <h1 class="card-title" style="color: #F5DDC5">B</h1>
+                                                    {% elif  contract_guard_data.completerank == 'C' %}
+                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪OOO</h1>
+                                                        <h1 class="card-title" style="color: #F5DDC5">C</h1>
+                                                    {% elif  contract_guard_data.completerank == 'D' %}
+                                                        <h1 class="card-title" style="color: #F5DDC5">✪OOOO</h1>
+                                                        <h1 class="card-title" style="color: #F5DDC5">D</h1>
+                                                    {% else %}
+                                                        <h1 class="card-title" style="color: #F5DDC5"></h1>
+                                                        <h1 class="card-title">&nbsp;</h1>
+                                                    {% endif %}
+
+                                                </div>
+                                                <div class="card-body  text-center">
+                                                    <h3 class="card-title">Level {{ contract_guard_data.shownumber }}</h3>
+                                                    <h4 class="card-text">{{ contract_guard_data.contracttitle }}</h4>
+                                                    {% if contract_guard_data.contractlevel == 'easy' %}
+                                                        <span class="badge badge-success">Easy</span>
+                                                    {% elif  contract_guard_data.contractlevel == 'medium' %}
+                                                        <span class="badge badge-info">Medium</span>
+
+                                                    {% elif  contract_guard_data.contractlevel == 'hard' %}
+                                                        <span class="badge badge-warning">Hard</span>
+
+                                                    {% elif  contract_guard_data.contractlevel == 'strong' %}
+                                                        <span class="badge badge-danger">Difficult</span>
+                                                    {% endif %}
+                                                    <hr>
+                                                    <p class="card-text" style="color: #5e72e4">Basic</p>
+                                                    <p class="card-text">{{ contract_guard_data.basicdescription }}</p>
+                                                    <p class="card-text " style="color: #5e72e4">Better</p>
+                                                    <p class="card-text">{{ contract_guard_data.advancedescription }}</p>
+                                                    <div class="row">
+                                                        {% if contract_guard_data.contractstate == 'basic' %}
+                                                            <div class="col-sm-6">
+                                                                <p class="card-text" style="color: #5e72e4">
+                                                                    Basic</p>
+                                                                <p>⦿</p>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <p class="card-text" style="color: #5e72e4">
+                                                                    Better</p>
+                                                                <p>---</p>
+                                                            </div>
+                                                        {% elif contract_guard_data.contractstate == 'advance' %}
+                                                            <div class="col-sm-6">
+                                                                <p class="card-text" style="color: #5e72e4">
+                                                                    Basic</p>
+                                                                <p>⦿</p>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <p class="card-text" style="color: #5e72e4">
+                                                                    Better</p>
+                                                                <p>⦿</p>
+                                                            </div>
+                                                        {% elif contract_guard_data.contractstate == 'nothing' %}
+                                                            <div class="col-sm-6">
+                                                                <p class="card-text" style="color: #5e72e4">
+                                                                    Basic</p>
+                                                                <p>---</p>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <p class="card-text" style="color: #5e72e4">
+                                                                    Better</p>
+                                                                <p>---</p>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    <hr>
+
+                                                    <form style="position: relative; margin-top: .5em;"
+                                                          method="post">{% csrf_token %}
+                                                        <button name="dowork" type="submit"
+                                                                value="{{ contract_guard_data.contractid }}"
+                                                                class="btn btn-primary btn-round">
+                                                            Play
+                                                        </button>
+                                                    </form>
+
+
+                                                </div>
+                                            {% else %}
+                                                <img class="card-img-top"
+                                                     src="{% static 'img_folder/primary-bg-lock.png' %}"
+                                                     alt="Card image cap">
+                                                <div class="card-body  text-center">
+                                                    <h3 class="card-title">Level {{ contract_guard_data.shownumber }}</h3>
+                                                    <h4 class="card-text">{{ contract_guard_data.contracttitle }}</h4>
+                                                    {% if contract_guard_data.contractlevel == 'easy' %}
+                                                        <span class="badge badge-success">Easy</span>
+                                                    {% elif  contract_guard_data.contractlevel == 'medium' %}
+                                                        <span class="badge badge-info">Medium</span>
+
+                                                    {% elif  contract_guard_data.contractlevel == 'hard' %}
+                                                        <span class="badge badge-warning">Hard</span>
+
+                                                    {% elif  contract_guard_data.contractlevel == 'strong' %}
+                                                        <span class="badge badge-danger">Difficult</span>
+                                                    {% endif %}
+                                                    <hr>
+                                                    <p class="card-text" style="color: #5e72e4">Basic</p>
+                                                    <p class="card-text">Complete the previous level to unlock</p>
+                                                    <p class="card-text " style="color: #5e72e4">Better</p>
+                                                    <p class="card-text">Complete the previous level to unlock</p>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <p class="card-text" style="color: #5e72e4">
+                                                                Basic</p>
+                                                            <p>---</p>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <p class="card-text" style="color: #5e72e4">
+                                                                Better</p>
+                                                            <p>---</p>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <form style="position: relative; margin-top: .5em;"
+                                                          method="post">{% csrf_token %}
+                                                        <button name="dowork" type="submit"
+                                                                value="{{ contract_guard_data.contractid }}"
+                                                                class="btn btn-primary btn-round" disabled>
+                                                            Play
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </di>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!--Contract-->
+{#    <div class="row">#}
+{#        <div class="col-lg-8">#}
+{#            <div class="card">#}
+{#                <div class="card-header">#}
+{#                    <ul class="nav nav-pills nav-pills-primary" role="tablist">#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link active" data-toggle="tab" href="#linkwbc" role="tablist"#}
+{#                               aria-expanded="true">#}
+{#                                製作白血球(Test case)#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link" data-toggle="tab" href="#linkvaccine" role="tablist"#}
+{#                               aria-expanded="false">#}
+{#                                製作疫苗(Mutant)#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="card-body">#}
+{#                    <div class="tab-content tab-space" style="color: #ffffff;font-size: small;">#}
+{#                        <div class="tab-pane active" id="linkwbc" aria-expanded="true">#}
+{#                            <div class="row">#}
+{#                                {% for contract_guard_data in dataset.Guard %}#}
+{#                                    <div class="col-sm-4">#}
+{#                                        <div class="card" style="width: 20rem;">#}
+{#                                            {% if contract_guard_data.islock == False %}#}
+{#                                                <img class="card-img-top"#}
+{#                                                     src="{% static 'img_folder/primary-bg.png' %}"#}
+{#                                                     alt="Card image cap">#}
+{#                                                <div class="card-img-overlay text-center ">#}
+{#                                                    <h1 class="card-title">&nbsp;</h1>#}
+{#                                                    {% if contract_guard_data.completerank == 'S' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪✪✪</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">S</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'A' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪✪O</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">A</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'B' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪OO</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">B</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'C' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪OOO</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">C</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'D' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪OOOO</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">D</h1>#}
+{#                                                    {% else %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5"></h1>#}
+{#                                                        <h1 class="card-title">&nbsp;</h1>#}
+{#                                                    {% endif %}#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="card-body  text-center">#}
+{#                                                    <h3 class="card-title">關卡 {{ contract_guard_data.shownumber }}</h3>#}
+{#                                                    <h4 class="card-text">{{ contract_guard_data.contracttitle }}</h4>#}
+{#                                                    {% if contract_guard_data.contractlevel == 'easy' %}#}
+{#                                                        <span class="badge badge-success">Easy</span>#}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'medium' %}#}
+{#                                                        <span class="badge badge-info">Medium</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'hard' %}#}
+{#                                                        <span class="badge badge-warning">Hard</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'strong' %}#}
+{#                                                        <span class="badge badge-danger">Difficult</span>#}
+{#                                                    {% endif %}#}
+{#                                                    <hr>#}
+{#                                                    <p class="card-text" style="color: #5e72e4">過關條件</p>#}
+{#                                                    <p class="card-text">{{ contract_guard_data.basicdescription }}</p>#}
+{#                                                    <p class="card-text " style="color: #5e72e4">額外條件</p>#}
+{#                                                    <p class="card-text">{{ contract_guard_data.advancedescription }}</p>#}
+{#                                                    <div class="row">#}
+{#                                                        {% if contract_guard_data.contractstate == 'basic' %}#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #5e72e4">#}
+{#                                                                    過關條件</p>#}
+{#                                                                <p>⦿</p>#}
+{#                                                            </div>#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #5e72e4">#}
+{#                                                                    額外條件</p>#}
+{#                                                                <p>---</p>#}
+{#                                                            </div>#}
+{#                                                        {% elif contract_guard_data.contractstate == 'advance' %}#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #5e72e4">#}
+{#                                                                    過關條件</p>#}
+{#                                                                <p>⦿</p>#}
+{#                                                            </div>#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #5e72e4">#}
+{#                                                                    額外條件</p>#}
+{#                                                                <p>⦿</p>#}
+{#                                                            </div>#}
+{#                                                        {% elif contract_guard_data.contractstate == 'nothing' %}#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #5e72e4">#}
+{#                                                                    過關條件</p>#}
+{#                                                                <p>---</p>#}
+{#                                                            </div>#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #5e72e4">#}
+{#                                                                    額外條件</p>#}
+{#                                                                <p>---</p>#}
+{#                                                            </div>#}
+{#                                                        {% endif %}#}
+{#                                                    </div>#}
+{#                                                    <hr>#}
+{##}
+{#                                                    <form style="position: relative; margin-top: .5em;"#}
+{#                                                          method="post">{% csrf_token %}#}
+{#                                                        <button name="dowork" type="submit"#}
+{#                                                                value="{{ contract_guard_data.contractid }}"#}
+{#                                                                class="btn btn-primary btn-round">#}
+{#                                                            Play#}
+{#                                                        </button>#}
+{#                                                    </form>#}
+{##}
+{##}
+{#                                                </div>#}
+{#                                            {% else %}#}
+{#                                                <img class="card-img-top"#}
+{#                                                     src="{% static 'img_folder/primary-bg-lock.png' %}"#}
+{#                                                     alt="Card image cap">#}
+{#                                                <div class="card-body  text-center">#}
+{#                                                    <h3 class="card-title">關卡 {{ contract_guard_data.shownumber }}</h3>#}
+{#                                                    <h4 class="card-text">{{ contract_guard_data.contracttitle }}</h4>#}
+{#                                                    {% if contract_guard_data.contractlevel == 'easy' %}#}
+{#                                                        <span class="badge badge-success">Easy</span>#}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'medium' %}#}
+{#                                                        <span class="badge badge-info">Medium</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'hard' %}#}
+{#                                                        <span class="badge badge-warning">Hard</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'strong' %}#}
+{#                                                        <span class="badge badge-danger">Difficult</span>#}
+{#                                                    {% endif %}#}
+{#                                                    <hr>#}
+{#                                                    <p class="card-text" style="color: #5e72e4">過關條件</p>#}
+{#                                                    <p class="card-text">完成前一關解鎖</p>#}
+{#                                                    <p class="card-text " style="color: #5e72e4">額外條件</p>#}
+{#                                                    <p class="card-text">完成前一關解鎖</p>#}
+{#                                                    <div class="row">#}
+{#                                                        <div class="col-sm-6">#}
+{#                                                            <p class="card-text" style="color: #5e72e4">#}
+{#                                                                過關條件</p>#}
+{#                                                            <p>---</p>#}
+{#                                                        </div>#}
+{#                                                        <div class="col-sm-6">#}
+{#                                                            <p class="card-text" style="color: #5e72e4">#}
+{#                                                                額外條件</p>#}
+{#                                                            <p>---</p>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                    <hr>#}
+{#                                                    <form style="position: relative; margin-top: .5em;"#}
+{#                                                          method="post">{% csrf_token %}#}
+{#                                                        <button name="dowork" type="submit"#}
+{#                                                                value="{{ contract_guard_data.contractid }}"#}
+{#                                                                class="btn btn-primary btn-round" disabled>#}
+{#                                                            Play#}
+{#                                                        </button>#}
+{#                                                    </form>#}
+{##}
+{#                                                </div>#}
+{##}
+{#                                            {% endif %}#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                {% endfor %}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="tab-pane" id="linkvaccine" aria-expanded="false">#}
+{#                            <div class="row">#}
+{#                                {% for contract_guard_data in dataset.Aggression %}#}
+{#                                    <div class="col-sm-4">#}
+{#                                        <div class="card" style="width: 20rem;">#}
+{#                                            {% if contract_guard_data.islock == False %}#}
+{#                                                <img class="card-img-top"#}
+{#                                                     src="{% static 'img_folder/primary-bg.png' %}"#}
+{#                                                     alt="Card image cap">#}
+{#                                                <div class="card-img-overlay text-center ">#}
+{#                                                    <h1 class="card-title">&nbsp;</h1>#}
+{#                                                    {% if contract_guard_data.completerank == 'S' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪✪✪</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">S</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'A' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪✪O</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">A</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'B' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪✪OO</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">B</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'C' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪✪OOO</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">C</h1>#}
+{#                                                    {% elif  contract_guard_data.completerank == 'D' %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">✪OOOO</h1>#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5">D</h1>#}
+{#                                                    {% else %}#}
+{#                                                        <h1 class="card-title" style="color: #F5DDC5"></h1>#}
+{#                                                        <h1 class="card-title">&nbsp;</h1>#}
+{#                                                    {% endif %}#}
+{##}
+{#                                                </div>#}
+{#                                                <div class="card-body  text-center">#}
+{#                                                    <h3 class="card-title">關卡 {{ contract_guard_data.shownumber }}</h3>#}
+{#                                                    <h4 class="card-text">{{ contract_guard_data.contracttitle }}</h4>#}
+{#                                                    {% if contract_guard_data.contractlevel == 'easy' %}#}
+{#                                                        <span class="badge badge-success">Easy</span>#}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'medium' %}#}
+{#                                                        <span class="badge badge-info">Medium</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'hard' %}#}
+{#                                                        <span class="badge badge-warning">Hard</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'strong' %}#}
+{#                                                        <span class="badge badge-danger">Difficult</span>#}
+{#                                                    {% endif %}#}
+{#                                                    <hr>#}
+{#                                                    <p class="card-text" style="color: #f5365c">過關條件</p>#}
+{#                                                    <p class="card-text">{{ contract_guard_data.basicdescription }}</p>#}
+{#                                                    <p class="card-text " style="color: #f5365c">額外條件</p>#}
+{#                                                    <p class="card-text">{{ contract_guard_data.advancedescription }}</p>#}
+{#                                                    <div class="row">#}
+{#                                                        {% if contract_guard_data.contractstate == 'basic' %}#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #f5365c">#}
+{#                                                                    過關條件</p>#}
+{#                                                                <p>⦿</p>#}
+{#                                                            </div>#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #f5365c">#}
+{#                                                                    額外條件</p>#}
+{#                                                                <p>---</p>#}
+{#                                                            </div>#}
+{#                                                        {% elif contract_guard_data.contractstate == 'advance' %}#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #f5365c">#}
+{#                                                                    過關條件</p>#}
+{#                                                                <p>⦿</p>#}
+{#                                                            </div>#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #f5365c">#}
+{#                                                                    額外條件</p>#}
+{#                                                                <p>⦿</p>#}
+{#                                                            </div>#}
+{#                                                        {% elif contract_guard_data.contractstate == 'nothing' %}#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #f5365c">#}
+{#                                                                    過關條件</p>#}
+{#                                                                <p>---</p>#}
+{#                                                            </div>#}
+{#                                                            <div class="col-sm-6">#}
+{#                                                                <p class="card-text" style="color: #f5365c">#}
+{#                                                                    額外條件</p>#}
+{#                                                                <p>---</p>#}
+{#                                                            </div>#}
+{#                                                        {% endif %}#}
+{#                                                    </div>#}
+{#                                                    <hr>#}
+{##}
+{#                                                    <form style="position: relative; margin-top: .5em;"#}
+{#                                                          method="post">{% csrf_token %}#}
+{#                                                        <button name="dowork" type="submit"#}
+{#                                                                value="{{ contract_guard_data.contractid }}"#}
+{#                                                                class="btn btn-primary btn-round">#}
+{#                                                            Play#}
+{#                                                        </button>#}
+{#                                                    </form>#}
+{#                                                </div>#}
+{#                                            {% else %}#}
+{#                                                <img class="card-img-top"#}
+{#                                                     src="{% static 'img_folder/primary-bg-lock.png' %}"#}
+{#                                                     alt="Card image cap">#}
+{#                                                <div class="card-body  text-center">#}
+{#                                                    <h3 class="card-title">關卡 {{ contract_guard_data.shownumber }}</h3>#}
+{#                                                    <h4 class="card-text">{{ contract_guard_data.contracttitle }}</h4>#}
+{#                                                    {% if contract_guard_data.contractlevel == 'easy' %}#}
+{#                                                        <span class="badge badge-success">Easy</span>#}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'medium' %}#}
+{#                                                        <span class="badge badge-info">Medium</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'hard' %}#}
+{#                                                        <span class="badge badge-warning">Hard</span>#}
+{##}
+{#                                                    {% elif  contract_guard_data.contractlevel == 'strong' %}#}
+{#                                                        <span class="badge badge-danger">Difficult</span>#}
+{#                                                    {% endif %}#}
+{#                                                    <hr>#}
+{#                                                    <p class="card-text" style="color: #f5365c">過關條件</p>#}
+{#                                                    <p class="card-text">完成前一關解鎖</p>#}
+{#                                                    <p class="card-text " style="color: #f5365c">額外條件</p>#}
+{#                                                    <p class="card-text">完成前一關解鎖</p>#}
+{#                                                    <div class="row">#}
+{#                                                        <div class="col-sm-6">#}
+{#                                                            <p class="card-text" style="color: #f5365c">#}
+{#                                                                過關條件</p>#}
+{#                                                            <p>---</p>#}
+{#                                                        </div>#}
+{#                                                        <div class="col-sm-6">#}
+{#                                                            <p class="card-text" style="color: #f5365c">#}
+{#                                                                額外條件</p>#}
+{#                                                            <p>---</p>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                    <hr>#}
+{#                                                    <form style="position: relative; margin-top: .5em;"#}
+{#                                                          method="post">{% csrf_token %}#}
+{#                                                        <button name="dowork" type="submit"#}
+{#                                                                value="{{ contract_guard_data.contractid }}"#}
+{#                                                                class="btn btn-primary btn-round" disabled>#}
+{#                                                            Play#}
+{#                                                        </button>#}
+{#                                                    </form>#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+{##}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                {% endfor %}#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+
+        });
+    </script>
+
+{% endblock javascripts %}

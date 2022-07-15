@@ -1,0 +1,15 @@
+class TestStringMethods(unittest.TestCase):
+    def setUp(self):
+       self.input_data = [1, 1, 2, 3, 5, 8, 10, 11, 13, 15, 16, 17, 20, 24, 29, 35, 37, 39, 39, 41, 42, 42, 45, 50, 54, 57, 60, 61, 61, 62, 64, 66, 67, 67, 69, 70, 72, 74, 76, 76, 77, 79, 80, 82, 83, 84, 87, 92, 97, 98]
+       self.aim = 74
+       self.result = '-'
+       self.expect = 37
+
+    def test_tri(self):
+        try :
+            self.assertEqual(interpolation_search(self.input_data,self.aim),self.expect)
+            self.result = self.expect
+        except AssertionError:
+            self.result = interpolation_search(self.input_data,self.aim)
+        except Exception as e:
+            self.result = e

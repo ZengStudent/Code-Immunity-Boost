@@ -1,0 +1,16 @@
+        finally:
+            file_dir =  path + 'unittest_'+str(order)+'.txt'
+            f = open(file_dir, 'w+', encoding='UTF-8')
+            f.write(str(self.result))
+            f.seek(0)
+            f.close()
+
+            file_dir = path + 'unittest_expect_' + str(order) + '.txt'
+            f = open(file_dir, 'w+', encoding='UTF-8')
+            f.write(str(self.expect))
+            f.seek(0)
+            f.close()
+
+
+if __name__ == '__main__':
+    unittest.main()

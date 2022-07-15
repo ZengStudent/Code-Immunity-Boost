@@ -1,0 +1,66 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <!-- 載入靜態檔案 -->
+    {% load static %}
+    <!--vanilla-tilt.js-->
+    <script src="{% static 'vanilla_tilt/vanilla-tilt.js' %}"></script>
+
+    <!--About-->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>About</h2>
+                </div>
+                <div class="card-body">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <div class="card">
+                               <div class="card-header">
+                                    <H3>Selab</H3>
+                               </div>
+                               <div class="card-body">
+                                    <p>軟體工程實驗室。</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+        });
+
+        //class包含vanilla
+        VanillaTilt.init(document.querySelectorAll(".vanilla"), {
+            glare: false,
+            scale: 1.1,
+            "max-glare": 0.8
+        });
+
+
+    </script>
+
+
+
+
+
+{% endblock javascripts %}

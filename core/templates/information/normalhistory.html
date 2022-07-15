@@ -1,0 +1,317 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <!-- 載入靜態檔案 -->
+    {% load static %}
+    <!--vanilla-tilt.js-->
+    <script src="{% static 'vanilla_tilt/vanilla-tilt.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'contribution_grid/contribution_grid_css/contribution_grid.css' %}">
+    <script src="{% static 'contribution_grid/contribution_grid_js/contribution_grid.js' %}"></script>
+    <script src="{% static 'General/General_JS/history.js' %}"></script>
+
+
+    <!---->
+    <div class="row">
+        <!--Role-->
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">製造白血球</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_guard_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">製造疫苗</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_aggression_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <canvas id="history_doughnut_role"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pass Condition-->
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">Mutant Score</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_mutationscore_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">Coverage</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_coverage_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">Unittest</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_unittest_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <canvas id="history_doughnut_passcondition"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pass State-->
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">過關</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_basic_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <div class="alert alert-primary" role="alert">額外</div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3>{{ userdata.get_advance_contract_count }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <canvas id="history_doughnut_passstate"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Record(Add)-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-sm-6 text-left">
+                        <h2>Record(Add)</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        {% for name in contractadddata %}
+                            <thead>
+                            <tr>
+                                <th>關卡</th>
+                                <th>加入時間</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{ name.get_contract_id.get_title }}</td>
+                                <td>{{ name.get_addedtime }}</td>
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Record(Submit)-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-sm-6 text-left">
+                        <h2>Record(Submit)</h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        {% for name in normalusersubmitdata %}
+                            <thead>
+                            <tr>
+                                <th>關卡</th>
+                                <th>提交時間</th>
+                                <th>程式碼</th>
+                                <th>比較程式碼</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{ name.get_contract_id.get_title }}</td>
+                                <td>{{ name.get_editorcode_submittime }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#Contract{{ name.get_id }}">Show
+                                    </button>
+                                </td>
+                                <td><p>A</p></td>
+                            </tr>
+                            </tbody>
+                            <div class="modal fade bd-example-modal-lg" id="Contract{{ name.get_id }}" tabindex="-1"
+                                 role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <i class="tim-icons icon-simple-remove"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{ name.get_editorcode|linebreaksbr }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Record(Complete)-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Record(Complete)</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        {% for name in normalusercompletedata %}
+                            <thead>
+                            <tr>
+                                <th>關卡</th>
+                                <th>完成時間</th>
+                                <th>是否基礎通關</th>
+                                <th>是否進階通關</th>
+                                <th>程式碼</th>
+                                <th>比較程式碼</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{ name.get_contract_id.get_title }}</td>
+                                <td>{{ name.get_editorcode_completedtime }}</td>
+                                {% if name.get_editorcode_isbasic %}
+                                    <td><span class="badge badge-primary">V</span></td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                                {% if name.get_editorcode_isadvance %}
+                                    <td><span class="badge badge-primary">V</span></td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#ContractComplete{{ name.get_contract_id.get_id }}">Show
+                                    </button>
+                                </td>
+                                {% for comparename,comparevalue in comparecodeexist.items %}
+                                    {% if comparevalue.name == name.get_id %}
+                                        <td>{{ comparevalue.value }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <div class="modal fade bd-example-modal-lg"
+                                 id="ContractComplete{{ name.get_contract_id.get_id }}"
+                                 tabindex="-1"
+                                 role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <i class="tim-icons icon-simple-remove"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{ name.get_editorcode_completed|linebreaksbr }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        //class包含vanilla
+        VanillaTilt.init(document.querySelectorAll(".vanilla"), {
+            glare: false,
+            scale: 1.1,
+            "max-glare": 0.8
+        });
+
+        history_doughnut_role({{ userdata.get_guard_contract_count }}, {{ userdata.get_aggression_contract_count }});
+        history_doughnut_passcondition({{ userdata.get_mutationscore_contract_count }}, {{  userdata.get_coverage_contract_count}}, {{ userdata.get_unittest_contract_count }});
+        history_doughnut_passstate({{ userdata.get_basic_contract_count }}, {{ userdata.get_advance_contract_count }});
+    </script>
+
+
+
+
+
+{% endblock javascripts %}

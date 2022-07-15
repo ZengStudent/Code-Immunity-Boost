@@ -1,0 +1,23 @@
+{% if 'guard' in segment or 'aggression' in segment %}
+    <div class="fixed-plugin" style="top: 100px;">
+        <div class="dropdown show-dropdown">
+            <!--圖示-->
+            <a href="#" data-toggle="dropdown">
+                <i class="fa fa-info-circle fa-2x"> </i>
+            </a>
+            <!--內容-->
+            <ul class="dropdown-menu">
+                <li class="header-title">關卡條件(基本)</li>
+                <li class="adjustments-line text-center">
+                    <span> {{ contract_content_description }} </span>
+                </li>
+                <li class="header-title">關卡條件(進階)</li>
+                <li class="adjustments-line text-center">
+                    <span> {{ contract_perfect_description }} </span>
+                </li>
+            </ul>
+
+            <br/>
+        </div>
+    </div>
+{% endif %}

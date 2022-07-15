@@ -1,0 +1,38 @@
+.Flex_Wrap{ /*父元素*/
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    display:flex;
+}
+
+.Flex_Left{
+    background: white;
+    display:flex;
+}
+
+.Flex_Right{
+    background: white;
+    display:flex;
+    flex-direction: column;
+    margin-left: 10px;
+    justify-content: space-between ;
+}
+
+.FunctionBar{
+    background: #8A636C;
+    margin-bottom: 10px;
+}
+
+.Flex_Left_Attack{
+    background: white;
+    display:flex;
+    flex-direction: column;
+    margin-right: 10px;
+    justify-content: space-between ;
+}
+
+
+.Flex_Right_Attack{
+   background: white;
+    display:flex;
+}

@@ -1,0 +1,658 @@
+{% extends "layouts/base.html" %}
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+    <!-- 載入靜態檔案 -->
+    {% load static %}
+
+    <head>
+        <!--Loading-->
+        <link rel="stylesheet" href="{% static 'General/General_CSS/overlay.css' %}">
+        <script src="{% static 'General/General_JS/General.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'load_awesome/css/square-loader.css' %}">
+        <!--必要套件-->
+        <link rel="stylesheet" href="{% static 'codemirror/lib/codemirror.css' %}">
+        <script src="{% static 'codemirror/lib/codemirror.js' %}"></script>
+        <!--程式語言-->
+        <script src="{% static 'codemirror/mode/python/python.js' %}"></script>
+        <!--額外功能-->
+        <!--摺疊功能-->
+        <script src="{% static 'codemirror/addon/fold/foldcode.js' %}"></script>
+        <script src="{% static 'codemirror/addon/fold/indent-fold.js' %}"></script>
+        <!--摺疊外觀-->
+        <link rel="stylesheet" href="{% static 'codemirror/addon/fold/foldgutter.css' %}"/>
+        <!--摺疊左側標記-->
+        <script src="{% static 'codemirror/addon/fold/foldgutter.js' %}"></script>
+        <!--摺疊大括號{}功能-->
+        <script src="{% static 'codemirror/addon/fold/brace-fold.js' %}"></script>
+        <!--摺疊註解功能-->
+        <script src="{% static 'codemirror/addon/fold/comment-fold.js' %}"></script>
+        <!--AutoComplete功能(語言)-->
+        <script src="{% static 'codemirror/addon/hint/css-hint.js' %}"></script>
+        <!--AutoComplete功能(必要)-->
+        <script src="{% static 'codemirror/addon/hint/show-hint.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'codemirror/addon/hint/show-hint.css' %}">
+        <!--JavaScript-->
+        <script src="{% static 'guard/guard_js/guard_otm.js' %}"></script>
+        <!--contribution square-->
+        <link rel="stylesheet" href="{% static 'contribution_grid/contribution_grid_css/contribution_grid.css' %}">
+        <script src="{% static 'contribution_grid/contribution_grid_js/contribution_grid.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'animatecss/animate.css' %}">
+        <script src="{% static 'General/General_JS/move.js' %}"></script>
+    </head>
+
+    <!--Loading Screen-->
+    <div id="overlay">
+        <div id="overlay_icon" style="color: #66615b" class="la-square-loader la-3x">
+            <div></div>
+        </div>
+        <div id="overlay_text">
+            <h3 style="color: #ffffff">努力製作白血球中...</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9">
+            <!--Contract Information-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist"
+                                       aria-expanded="true">
+                                        Level
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist"
+                                       aria-expanded="false">
+                                        Score Report
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content tab-space" style="color: #ffffff;font-size: small;">
+                                <div class="tab-pane active" id="link1" aria-expanded="true">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>關卡</b></h4>
+                                            <h5>{{ contract_title }}</h5>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>關卡條件(基本)</b></h4>
+                                            <h5>{{ contract_content_description }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>描述</b></h4>
+                                            <h5>{{ contract_description }}</h5>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>關卡條件(額外)</b></h4>
+                                            <h5>{{ contract_perfect_description }}</h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>輸入</b></h4>
+                                            <h5>{{ contract_input_description }}</h5>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>輸出</b></h4>
+                                            <h5>{{ contract_output_description }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>輸入範例(1)</b></h4>
+                                            <h5>{{ contract_input_example_one }}</h5>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>輸出範例(1)</b></h4>
+                                            <h5>{{ contract_output_example_one }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>輸入範例(2)</b></h4>
+                                            <h5>{{ contract_input_example_two }}</h5>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h4 style="color: #5e72e4"><b>輸出範例(2)</b></h4>
+                                            <h5>{{ contract_output_example_two }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="link2" aria-expanded="false">
+                                    {% if  table_square %}
+                                        {% for name,value in smallreport.items %}
+                                            <p>{{ value|linebreaksbr }}</p>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>此頁面將會在使用者提交程式碼後，顯示提交報告。</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Original Code、Opposites Code-->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-sm-12 text-left">
+                                    <h5 class="title">Original Code</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="area_of_originalcode" class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-sm-8 text-left">
+                                    <h5 class="title">Mutants</h5>
+                                    {% if  table_square %}
+                                        <h5>Survived: {{ submitsurvived }}</h5>
+                                        <h5>Killed: {{ submitkilled }}</h5>
+                                    {% endif %}
+                                    <p id="Mutant_Amount" class="category">Mutant Amount: None</p>
+
+                                </div>
+                                <div class="col-sm-4 ">
+                                    <button name="opposites_pre" type="submit" class="btn btn-primary btn-sm"
+                                            onclick="guard_opposite_editor_previous(rand_mutant)">Pre
+                                    </button>
+                                    <button name="opposites_next" type="submit" class="btn btn-primary btn-sm"
+                                            onclick="guard_opposite_editor_next(rand_mutant)">Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="area_of_opposites" class="card-body">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Editor-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header ">
+                            <div class="row">
+                                <div class="col-sm-6 text-left">
+                                    <h5 class="card-category">Editor</h5>
+                                    <h2 class="card-title">Write Testcase</h2>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    {#                                    <button name="codedefault" type="submit" class="btn btn-primary btn-sm"#}
+                                    {#                                            onclick="guard_default(default_code)">Default#}
+                                    {#                                    </button>#}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <form style="position: relative; margin-top: .5em;" method="post">{% csrf_token %}
+                                <button name="codesubmit" type="submit" class="btn btn-primary btn-sm"
+                                        onclick="overlay_on()">
+                                    Submit
+                                </button>
+                                <textarea id="editor_cm" name="code">
+
+</textarea>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Console and Square Table-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                                {% if  table_square %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#console_sto" role="tablist"
+                                           aria-expanded="true">
+                                            Output
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#console_unit" role="tablist"
+                                           aria-expanded="false">
+                                            Unittest
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#squaretable" role="tablist"
+                                           aria-expanded="false">
+                                            Square Table
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#console_sto" role="tablist"
+                                           aria-expanded="true">
+                                            Output
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#console_unit" role="tablist"
+                                           aria-expanded="false">
+                                            Unittest
+                                        </a>
+                                    </li>
+
+
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content tab-space" style="color: #ffffff;font-size: small;">
+                                {% if  table_square %}
+                                    <div class="tab-pane active" id="console_sto" aria-expanded="true">
+                                        <!---->
+                                        <div class="row" style="height:250px;overflow:auto;">
+                                            <div class="col-md-12">
+                                                <p>{{ console_output_message|linebreaksbr }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="console_unit" aria-expanded="false">
+                                        <!---->
+                                        <div class="row" style="height:250px;overflow:auto;">
+                                            <div class="col-md-12">
+                                                <p>{{ console_error_message|linebreaksbr }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="tab-pane active" id="console_sto" aria-expanded="true">
+                                        <!---->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p>{{ console_output_message|linebreaksbr }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="console_unit" aria-expanded="false">
+                                        <!---->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p>{{ console_error_message|linebreaksbr }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="tab-pane" id="squaretable" aria-expanded="false">
+                                    <!--Square Table-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {% if  table_square %}
+                                                <table class="table">
+                                                    {% for name,value in table_square_dict.items %}
+                                                        <thead>
+                                                        <tr>
+                                                            <th>User Testcase</th>
+                                                            <th>Killed</th>
+                                                            <th>Mutant# {{ value.usercodename }}</th>
+                                                            <th>Original</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Testcase# 1</td>
+                                                            {% if value.scorecodename == "+++" %}
+                                                                <td><span class="badge badge-primary">V</span>
+                                                                </td>
+                                                            {% endif %}
+                                                            {% if value.scorecodename == "---" %}
+                                                                <td></td>
+                                                            {% endif %}
+                                                            <td>{{ value.mutantcodename }}</td>
+                                                            <td>{{ value.originalcodename }}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    {% endfor %}
+                                                </table>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Submit Reocrd</h5>
+                        </div>
+                        <div class="card-body">
+                            {% if  table_square %}
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        {% if codecompletebutton_state == 'advance' %}
+                                            <h4 style="color: #5e72e4"><b>是否通過基本條件</b></h4>
+                                            <h5>Pass</h5>
+                                            <hr>
+                                            <h4 style="color: #5e72e4"><b>是否通過額外條件</b></h4>
+                                            <h5>Pass</h5>
+                                            <hr>
+                                        {% elif  codecompletebutton_state == 'basic' %}
+                                            <h4 style="color: #5e72e4"><b>是否通過基本條件</b></h4>
+                                            <h5>Pass</h5>
+                                            <hr>
+                                            <h4 style="color: #5e72e4"><b>是否通過額外條件</b></h4>
+                                            <h5>Fail</h5>
+                                            <hr>
+                                        {% endif %}
+                                        <h4 style="color: #5e72e4"><b>Score</b></h4>
+                                        <h5>{{ completescore }}</h5>
+                                        <hr>
+                                        <h4 style="color: #5e72e4"><b>Rank</b></h4>
+                                        <h3>{{ completerank }}</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <h4 style="color: #5e72e4"><b>是否通過基本條件</b></h4>
+                                        <h5>---</h5>
+                                        <hr>
+                                        <h4 style="color: #5e72e4"><b>是否通過額外條件</b></h4>
+                                        <h5>---</h5>
+                                        <hr>
+                                        <h4 style="color: #5e72e4"><b>Score</b></h4>
+                                        <h5>---</h5>
+                                        <hr>
+                                        <h4 style="color: #5e72e4"><b>Rank</b></h4>
+                                        <h3>---</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <!--modal-header-->
+                                        <div class="modal-header">
+                                            <h3 class="modal-title">Submit Record</h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <i class="tim-icons icon-simple-remove"></i>
+                                            </button>
+                                        </div>
+                                        <!--modal-body-->
+                                        <div class="modal-body">
+{#                                            {% if  table_square %}#}
+{#                                                <div class="row">#}
+{#                                                    <div class="col-md-12">#}
+{#                                                        <hr>#}
+{#                                                        <div class="row">#}
+{#                                                            {% for name,value in table_square_dict.items %}#}
+{#                                                                {% if value.scorecodename == "+++" %}#}
+{#                                                                    <div class="col-md-1">#}
+{#                                                                        <h3 class="my-element">❁</h3>#}
+{#                                                                        <h5>{{ value.usercodename }}</h5>#}
+{#                                                                    </div>#}
+{#                                                                {% elif value.scorecodename == "---" %}#}
+{#                                                                    <div class="col-md-1">#}
+{#                                                                        <h3>❁</h3>#}
+{#                                                                        <h5>{{ value.usercodename }}</h5>#}
+{#                                                                    </div>#}
+{#                                                                {% endif %}#}
+{#                                                            {% endfor %}#}
+{##}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+                                            <div class="row">
+                                                <!--Basic-->
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h4>【基本】</h4>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h4>Score</h4>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>編譯狀態</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right">
+                                                            {% if  table_square %}
+                                                                <h5>Pass</h5>
+                                                            {% else %}
+                                                                <h5>Fail</h5>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ basiccompletescore.compiler }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h5>基本條件</h5>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h5>{{ contract_content_description }}</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ basiccompletescore.score }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>是否通過基本條件</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right">
+                                                            {% if codecompletebutton_state == 'disabled' or codecompletebutton_state == 'compiler' %}
+                                                                <h5>Fail</h5>
+                                                            {% else %}
+                                                                <h5>Pass</h5>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ basiccompletescore.basic }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--Bonus-->
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h4>【額外】</h4>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h4>Score</h4>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h5>額外條件</h5>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h5>{{ contract_perfect_description }}</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ advancecompletescore.score }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>是否通過額外條件</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right">
+                                                            {% if codecompletebutton_state == 'advance' %}
+                                                                <h5>Pass</h5>
+                                                            {% else %}
+                                                                <h5>Fail</h5>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ advancecompletescore.advance }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h4>【特殊】</h4>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h4>Score</h4>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h5>Survived</h5>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h5>{{ submitsurvived }}</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ speicalcompletescore.survived }}</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h5>Killed</h5>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <h5>{{ submitkilled }}</h5>
+                                                        </div>
+                                                        <div class="col-sm-3 text-right"
+                                                             style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">
+                                                            <h5>{{ speicalcompletescore.killed }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h4>【Total】</h4>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h4>Total Score</h4>
+                                                        </div>
+                                                        <div class="col-sm-9 text-right">
+                                                            <h4>{{ completescore }}</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h4>Rank</h4>
+                                                        </div>
+                                                        <div class="col-sm-9 text-right">
+                                                            <h1 class="animate__animated animate__bounce animate__infinite	infinite" style="font-size: 100px;">{{ completerank }}</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--modal-footer-->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script id="script">
+
+        //判斷是否為第一次進入頁面，true:第一次，false:非第一次
+        var isdefault = {{ isdefault|safe }};
+        //Default Code
+        var default_code = {{defaultcode|safe}};
+
+        //第一個Editor
+        guard_Initial_Editor(document.getElementById("editor_cm"));
+
+        //如果是第一次進入頁面
+        if (isdefault === 'true') {
+            guard_default(default_code);
+        }
+        //如果是送出code
+        else {
+            move_guard();
+            $('#myModal').modal('show');
+            //使用者的code
+            guard_rewrite({{ user_code|safe }});
+
+        }
+
+        //隨機生成Mutant
+        var rand_mutant = {{ mutant_context|safe }};
+        //顯示Opposites
+        guard_show_CT(1, rand_mutant);
+
+        //顯示Original Code
+        var originalcode = {{originalcode|safe}}
+            guard_show_originalcode(originalcode);
+
+        //計算時間
+        //setInterval(timer, 1000);
+
+    </script>
+{% endblock javascripts %}

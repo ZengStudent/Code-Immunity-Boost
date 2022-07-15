@@ -1,0 +1,58 @@
+  class TestStringMethods(unittest.TestCase):
+  
+      def setUp(self):
+  
+-        # input length
+?                 ^^^ -
++        # input data list
+?                +++++ ^^
+  
+-        self.input_a =7
++        self.input_data = [1,3,5,7,9,11,13,15]
+  
+-        # input length
+?                  ----
++        # input aim value
+?                ++++++ +
+  
+-        self.input_b =12
+?              ^^^^^^   ^
++        self.aim = 13
+?             + ^  + ^
+- 
+-        # input length
+- 
+-        self.input_c =12
+  
+         self.result = '-'
+  
+-        # input expect type
+?                       ^^^
++        # input expect index
+?                       ^^^ +
+  
+-        self.expect = 'Acute Isosceles'
++        self.expect = 6
+  
+  
+  
+      def test_tri(self):
+  
+          try :
+  
+-             self.assertEqual(tri(self.input_a,self.input_b,self.input_c),self.expect)
+?                                                     ^^^^^^^^^^^^^^^^^^^
++             self.assertEqual(interpolation_search(self.input_data,self.aim),self.expect)
+?                              ++ + +++++ +++++++++            +++       + ^
+  
+              self.result = self.expect
+  
+          except AssertionError:
+  
+-             self.result = tri(self.input_a,self.input_b,self.input_c)
++             self.result = interpolation_search(self.input_data,self.aim)
+  
+          except Exception as e:
+  
+              self.result = e
+  

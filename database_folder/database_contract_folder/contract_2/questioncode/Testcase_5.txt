@@ -1,0 +1,14 @@
+class TestStringMethods(unittest.TestCase):
+    def setUp(self):
+       self.input_a = [2, 3, 5, 6, 6, 8, 10, 17, 20, 20, 22, 22, 22, 25, 25, 25, 28, 30, 33, 43, 44, 51, 52, 53, 53, 54, 54, 54, 55, 55, 58, 64, 66, 70, 74, 74, 75, 77, 79, 81, 82, 82, 82, 82, 82, 86, 86, 89, 99, 99]
+       self.result = '-'
+       self.expect = 53.5
+
+    def test_tri(self):
+        try :
+            self.assertEqual(median(self.input_a),self.expect)
+            self.result = self.expect
+        except AssertionError:
+            self.result = median(self.input_a)
+        except Exception as e:
+            self.result = e

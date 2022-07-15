@@ -1,0 +1,349 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <!-- 載入靜態檔案 -->
+    {% load static %}
+    <!--vanilla-tilt.js-->
+{#    <script src="{% static 'vanilla_tilt/vanilla-tilt.js' %}"></script>#}
+{#    <link rel="stylesheet" href="{% static 'contribution_grid/contribution_grid_css/contribution_grid.css' %}">#}
+{#    <script src="{% static 'General/General_JS/General.js' %}"></script>#}
+    <link rel="stylesheet" href="{% static 'General/General_CSS/move.css' %}">
+     <script src="{% static 'General/General_JS/move.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'animatecss/animate.css' %}">
+    <script src="{% static 'Chart.js/src/index.js' %}"></script>
+
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <blockquote class="blockquote text-center">
+                        <h2>Code Immunity Boost</h2>
+                        <div id="accordion" role="tablist" aria-multiselectable="false" class="card-collapse">
+                            <div class="card card-plain">
+                                <div class="card-header" role="tab" id="headingOne">
+                                    <p>學習變異測試之遊戲化系統設計與實作</p>
+                                </div>
+                                <div class="card-body">
+                                    <p>透過疫苗的原理，學習變異測試。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>怎麼開始</h3>
+                </div>
+                <div class="card-body">
+                    <h3>←←←從左側的【Start】開始遊玩。</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{#    <!--Anime-->#}
+{#    <div class="row">#}
+{#        <div class="col-md-12">#}
+{#            <div class="card text-center">#}
+{#                <div class="card-header">#}
+{#                    <button onclick="move_guard()"></button>#}
+{#                </div>#}
+{#                <div class="card-body">#}
+{#                    <div class="row">#}
+{#                       <div class="col-md-12">#}
+{#                           <div class="row">#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                               <div class="col-md-1">#}
+{#                                   <h3 class="my-element">❁</h3>#}
+{#                               </div>#}
+{#                           </div>#}
+{#                           <div class="row">#}
+{#                               <div class="col-md-12"></div>#}
+{#                           </div>#}
+{#                       </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <!--Submit Modal-->#}
+{#    <div class="row">#}
+{#        <div class="col-md-12">#}
+{#            <div class="card">#}
+{#                <div class="card-header">#}
+{#                </div>#}
+{#                <div class="card-body">#}
+{#                    <div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1" role="dialog">#}
+{#                        <div class="modal-dialog modal-xl" role="document">#}
+{#                            <div class="modal-content">#}
+{#                                <!--modal-header-->#}
+{#                                <div class="modal-header">#}
+{#                                    <h3 class="modal-title">Submit Record</h3>#}
+{#                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">#}
+{#                                        <i class="tim-icons icon-simple-remove"></i>#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <!--modal-body-->#}
+{#                                <div class="modal-body">#}
+{#                                    <div class="row">#}
+{#                                        <!--Basic-->#}
+{#                                        <div class="col-sm-6">#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h4>【基本】</h4>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h4>Score</h4>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <hr>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h5>總花費時間</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right">#}
+{#                                                    <h5>00:05:19</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>5000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h5>編譯狀態</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right">#}
+{#                                                    <h5>Pass</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h5>基本條件</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h5>需達到Mutant Score 50%(含) 以上。</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>70%</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h5>是否通過基本條件</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right">#}
+{#                                                    <h5>Pass</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <!--Bonus-->#}
+{#                                        <div class="col-sm-6">#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h4>【額外】</h4>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h4>Score</h4>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <hr>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h5>進階條件</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h5>需達到Mutant Score 70%(含) 以上。</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>70%</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h5>是否通過進階條件</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right">#}
+{#                                                    <h5>Pass</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-sm-12">#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-6">#}
+{#                                                    <h4>【特殊】</h4>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h4>Score</h4>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <hr>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h5>Survived</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h5>1、2、3、5、7、8</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h5>Killed</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h5>9、10</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h5>Run Time</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h5>26ms</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h5>Memory</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-6 text-right">#}
+{#                                                    <h5>39.7MB</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-3 text-right"#}
+{#                                                     style="border: 2px solid #66615B;border-top: 3px;border-bottom: 3px;border-right: 3px;">#}
+{#                                                    <h5>10000</h5>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-sm-12">#}
+{#                                            <h4>【Total】</h4>#}
+{#                                            <hr>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-3">#}
+{#                                                    <h4>Total Score</h4>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-9 text-right">#}
+{#                                                    <h4>100950</h4>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                            <div class="row">#}
+{#                                                <div class="col-sm-2">#}
+{#                                                    <h5>Markname</h5>#}
+{#                                                    <h3>Cell</h3>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-4">#}
+{#                                                    <img src="{% static 'img_folder/neuron.png' %}" width="30%">#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-2 text-right">#}
+{#                                                    <h5>Rank</h5>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-4 text-right">#}
+{#                                                    <h1 style="font-size: 100px;">S</h1>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <!--modal-footer-->#}
+{#                                <div class="modal-footer">#}
+{#                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        //$('#myModal').modal('show');
+        //movetest();
+    </script>
+
+
+
+
+
+{% endblock javascripts %}

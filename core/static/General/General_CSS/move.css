@@ -1,0 +1,40 @@
+.wbc {
+    width: 50px;
+    height: 50px;
+    background: blue;
+    display: block;
+    position: relative;
+    border-radius: 50%;
+
+    /* animation 參數設定 */
+    animation-name: MoveToRight;    /*動畫名稱，需與 keyframe 名稱對應*/
+    animation-duration: 4s;    /*動畫持續時間，單位為秒*/
+    animation-delay: 2s;    /*動畫延遲開始時間*/
+    animation-iteration-count: 1;    /*動畫次數，infinite 為無限次*/
+}
+
+
+.vaccine {
+    width: 50px;
+    height: 50px;
+    background: red;
+    display: block;
+    position: relative;
+    border-radius: 50%;
+
+    /* animation 參數設定 */
+    animation-name: MoveToRight;    /*動畫名稱，需與 keyframe 名稱對應*/
+    animation-duration: 4s;    /*動畫持續時間，單位為秒*/
+    animation-delay: 2s;    /*動畫延遲開始時間*/
+    animation-iteration-count: 1;    /*動畫次數，infinite 為無限次*/
+}
+
+
+/* 關鍵影格(@keyframe) */
+@keyframes MoveToRight {
+    0% { left: 0; }
+    25% { left: 20%; }
+    50% { left: 40%; }
+    75% { left: 60%; }
+    100% { left: 80%; }
+}

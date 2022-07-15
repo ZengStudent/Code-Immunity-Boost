@@ -1,0 +1,308 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ username }}</h2>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>基本訊息</h2>
+                    <h2>{{ username }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <button class="btn btn-default animation-on-hover" type="button">新手</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">基本等級</h4>
+                                    <p class="card-text">不論做什麼都會有經驗，保持精進。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <button class="btn btn-info animation-on-hover" type="button">虛弱</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">測試等級</h4>
+                                    <p class="card-text">軟體測試做不好，保持軟體一樣爛。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <button class="btn btn-primary animation-on-hover" type="button">混亂</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">進階等級</h4>
+                                    <p class="card-text">一蹋糊塗。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>經驗值【基本】</h5>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <h2>15%</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="progress-container">
+                                        <div class="progress">
+                                            <div class="progress-bar-default"
+                                                 role="progressbar"
+                                                 aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 15%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>經驗值【測試】</h5>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <h2>15%</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="progress-container">
+                                        <div class="progress">
+                                            <div class="progress-bar-info"
+                                                 role="progressbar"
+                                                 aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 15%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>經驗值【進階】</h5>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <h2>15%</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="progress-container">
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                 role="progressbar"
+                                                 aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 15%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <div class="font-icon-detail">
+                        <p>After Update</p>
+                        <i class="tim-icons icon-minimal-down text-primary"></i>
+                        <i class="tim-icons icon-minimal-down text-primary"></i>
+                        <i class="tim-icons icon-minimal-down text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>基本訊息</h2>
+                    <h2>{{ username }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <button class="btn btn-default animation-on-hover" type="button">新手</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">基本等級</h4>
+                                    <p class="card-text">不論做什麼都會有經驗，保持精進。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <button class="btn btn-info animation-on-hover" type="button">虛弱</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">測試等級</h4>
+                                    <p class="card-text">軟體測試做不好，保持軟體一樣爛。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <button class="btn btn-primary animation-on-hover" type="button">混亂</button>
+                                <div class="card-body">
+                                    <h4 class="card-title">進階等級</h4>
+                                    <p class="card-text">一蹋糊塗。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>經驗值【基本】</h5>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <h2>15%</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="progress-container">
+                                        <div class="progress">
+                                            <div class="progress-bar-default"
+                                                 role="progressbar"
+                                                 aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 15%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>經驗值【測試】</h5>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <h2>15%</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="progress-container">
+                                        <div class="progress">
+                                            <div class="progress-bar-info"
+                                                 role="progressbar"
+                                                 aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 15%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>經驗值【進階】</h5>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <h2>15%</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="progress-container">
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                 role="progressbar"
+                                                 aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: 15%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock content %}
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+
+        });
+    </script>
+
+{% endblock javascripts %}
